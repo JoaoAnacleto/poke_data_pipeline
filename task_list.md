@@ -4,8 +4,8 @@
 
 ### Tarefa 1: Extração de Dados
 
-- [ ] **Consumo da API Principal:** Acessar a rota `/pokemon?limit=100&offset=0` para obter a lista inicial.
-- [ ] **Consumo da API de Detalhes:** Para cada Pokémon da lista, consultar a rota `/pokemon/{id}` ou a URL de detalhe fornecida.
+- [x] **Consumo da API Principal:** Acessar a rota `/pokemon?limit=100&offset=0` para obter a lista inicial.
+- [x] **Consumo da API de Detalhes:** Para cada Pokémon da lista, consultar a rota `/pokemon/{id}` ou a URL de detalhe fornecida.
 - [ ] **Criação do DataFrame:** Construir um DataFrame principal com o resultado das extrações.
 - [ ] **Estrutura do DataFrame:** Verificar se o DataFrame contém as seguintes colunas:
   - [ ] `ID`: Identificador único.
@@ -44,5 +44,5 @@
 
 - [ ] **Script Modular:** O código está organizado em módulos (ex: `extractor.py`, `transformer.py`, `reporter.py`).
 - [ ] **Script Principal:** Um script principal (ex: `main.py`) executa todas as tarefas em sequência.
-- [ ] **Implementação de Logs:** A biblioteca `logging` é utilizada para registrar o progresso do pipeline e os principais passos.
+- [x] **Implementação de Logs:** A biblioteca `logging` é utilizada para registrar o progresso do pipeline e os principais passos.
 - [ ] **Tratamento de Erros:** O pipeline lida com possíveis erros (ex: falhas na chamada da API, dados faltantes) usando `try...except`.
