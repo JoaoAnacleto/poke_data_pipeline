@@ -1,8 +1,13 @@
 import requests
+import logging
+import logging.config
 from settings import Settings
 
 
 configs = Settings()
+
+logging.config.fileConfig('logging.conf')
+logger = logging.getLogger(__name__)
 
 
 def fetch_pokemon_data(limit: int = 100, offset: int = 0) -> list[dict]:
@@ -16,5 +21,5 @@ def fetch_pokemon_data(limit: int = 100, offset: int = 0) -> list[dict]:
 
 if __name__ == "__main__":
     pokemon_data = fetch_pokemon_data()
-    print(pokemon_data)
+    logger.info(pokemon_data)
     
