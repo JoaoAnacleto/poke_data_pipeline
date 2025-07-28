@@ -20,13 +20,13 @@
 
 ### Tarefa 2: Transformação de Dados
 
-- [ ] **Categorização por Experiência:** Adicionar a coluna `Category` ao DataFrame.
-  - [ ] Categoria "Weak" para `base_experience < 50`.
-  - [ ] Categoria "Medium" para `base_experience` entre 50 e 100 (inclusivo).
-  - [ ] Categoria "Strong" para `base_experience > 100`.
-- [ ] **Contagem por Tipo:** Criar um novo DataFrame separado que mostra a contagem de Pokémon por tipo.
-- [ ] **Análise Estatística por Tipo:** Calcular a média de `Attack`, `Defense` e `HP` para cada tipo de Pokémon.
-- [ ] **Análise de Top Pokémon:** Identificar e listar os 5 Pokémon com a maior `Base Experience`.
+- [x] **Categorização por Experiência:** Adicionar a coluna `Category` ao DataFrame.
+  - [x] Categoria "Weak" para `base_experience < 50`.
+  - [x] Categoria "Medium" para `base_experience` entre 50 e 100 (inclusivo).
+  - [x] Categoria "Strong" para `base_experience > 100`.
+- [x] **Contagem por Tipo:** Criar um novo DataFrame separado que mostra a contagem de Pokémon por tipo.
+- [x] **Análise Estatística por Tipo:** Calcular a média de `Attack`, `Defense` e `HP` para cada tipo de Pokémon.
+- [x] **Análise de Top Pokémon:** Identificar e listar os 5 Pokémon com a maior `Base Experience`.
 - [ ] **Geração de Gráfico:** Gerar um gráfico de barras (`matplotlib` ou `seaborn`) mostrando a distribuição de Pokémon por tipo.
 
 ---

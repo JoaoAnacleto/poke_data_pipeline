@@ -8,3 +8,6 @@ class Settings(BaseSettings):
         extra='ignore',  # Ignore extra fields from .env
     )
     BASE_URL: str = "https://pokeapi.co/api/v2"
+    OUTPUT_DIR: str = "output"
+  
+    
