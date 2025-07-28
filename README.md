@@ -38,7 +38,7 @@ poke_data_pipeline/
 
 ### Pré-requisitos
 
-- Python 3.12+
+- Python 3.8+
 - Docker (opcional, para execução em containers)
 
 ### Via pip
@@ -46,7 +46,7 @@ poke_data_pipeline/
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/JoaoAnacleto/poke_data_pipeline.git
+   git clone https://github.com/seu-usuario/poke_data_pipeline.git
    cd poke_data_pipeline
    ```
 
@@ -69,7 +69,7 @@ poke_data_pipeline/
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/JoaoAnacleto/poke_data_pipeline.git
+   git clone https://github.com/seu-usuario/poke_data_pipeline.git
    cd poke_data_pipeline
    ```
 
@@ -81,6 +81,18 @@ poke_data_pipeline/
 
 ## Uso
 
+### Execução com Docker Compose
+
+Para executar o pipeline usando Docker Compose, navegue até o diretório raiz do projeto e execute:
+
+```bash
+docker-compose up --build
+```
+
+- `--build`: Constrói a imagem Docker antes de iniciar o container (útil na primeira execução ou após alterações no `Dockerfile`).
+
+Os relatórios gerados serão salvos no diretório `output/` do seu projeto local, devido ao mapeamento de volume configurado no `docker-compose.yml`.
+
 ### Execução Local
 
 Para executar o pipeline localmente, certifique-se de que as dependências estejam instaladas e execute o arquivo `main.py`:
@@ -91,16 +103,7 @@ python main.py
 
 Os relatórios gerados (gráficos e CSVs) serão salvos no diretório `output/`.
 
-### Execução com Docker
 
-Para executar o pipeline usando Docker, execute o seguinte comando:
-
-```bash
-docker run --rm -v $(pwd)/output:/app/output poke-data-pipeline
-```
-
-- `--rm`: Remove o container automaticamente após a execução.
-- `-v $(pwd)/output:/app/output`: Mapeia o diretório `output` do seu host para o diretório `output` dentro do container, permitindo que você acesse os relatórios gerados.
 
 ## Configuração
 
@@ -182,6 +185,3 @@ Após a instalação, você pode acessar a interface web do Portainer em `https:
 ## Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
-
-
-
