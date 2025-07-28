@@ -12,6 +12,8 @@ class DataTransformer:
         pokemon_dataframe["Category"] = pokemon_dataframe["Base Experience"].apply(
             lambda x: "Weak" if x < 50 else "Medium" if x < 100 else "Strong"
         )
+        self.logger.info("Pokemon experience categorized.")
+        self.logger.info(f"Pokemon experience: \n {pokemon_dataframe}")
         return pokemon_dataframe
 
     def count_pokemon_by_type(self, pokemon_dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -20,6 +22,7 @@ class DataTransformer:
         pokemon_count_by_type = exploded_df["Types"].value_counts().reset_index()
         pokemon_count_by_type.columns = ["Type", "Count"]
         self.logger.info("Type analysis complete.")
+        self.logger.info(f"Pokemon count by type: \n {pokemon_count_by_type}")
         return pokemon_count_by_type
 
     def calculate_type_statistics(
@@ -40,6 +43,7 @@ class DataTransformer:
         )
         type_statistics = type_statistics.round(2)
         self.logger.info("Type statistics calculation complete.")
+        self.logger.info(f"Type statistics: \n {type_statistics}")
         return type_statistics
 
     def find_top_pokemon(self, pokemon_dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -48,4 +52,15 @@ class DataTransformer:
             "Base Experience", ascending=False
         ).head(5)
         self.logger.info("Top Pokemon found.")
+        self.logger.info(f"Top Pokemon: \n {top_pokemon}")
         return top_pokemon
+
+
+    def transform_pokemon_data(self, pokemon_dataframe: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+        self.logger.info("Transforming Pokemon data")
+        pokemon_dataframe = self.categorize_experience(pokemon_dataframe)
+        pokemons_by_type_dataframe = self.count_pokemon_by_type(pokemon_dataframe)
+        pokemons_type_statistics_dataframe = self.calculate_type_statistics(pokemon_dataframe)
+        pokemons_top_5_dataframe = self.find_top_pokemon(pokemon_dataframe)
+        self.logger.info("Pokemon data transformation complete.")
+        return pokemon_dataframe, pokemons_by_type_dataframe, pokemons_type_statistics_dataframe, pokemons_top_5_dataframe

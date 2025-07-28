@@ -43,6 +43,6 @@
 ### Tarefa 4: Pipeline Automatizado
 
 - [x] **Script Modular:** O código está organizado em módulos (ex: `extractor.py`, `transformer.py`, `reporter.py`).
-- [ ] **Script Principal:** Um script principal (ex: `main.py`) executa todas as tarefas em sequência.
+- [x] **Script Principal:** Um script principal (ex: `main.py`) executa todas as tarefas em sequência.
 - [x] **Implementação de Logs:** A biblioteca `logging` é utilizada para registrar o progresso do pipeline e os principais passos.
 - [ ] **Tratamento de Erros:** O pipeline lida com possíveis erros (ex: falhas na chamada da API, dados faltantes) usando `try...except`.
