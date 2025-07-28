@@ -3,7 +3,7 @@ import logging
 import pandas as pd
 import requests
 
-from settings import Settings
+from config import Settings
 
 
 class PokemonExtractor:
