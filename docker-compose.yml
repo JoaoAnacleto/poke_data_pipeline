@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  poke-data-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./output:/app/output
+    restart: "no"
+    command: ["python", "main.py"]

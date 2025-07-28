@@ -8,6 +8,15 @@ class DataTransformer:
         self.logger = logger
 
     def categorize_experience(self, pokemon_dataframe: pd.DataFrame) -> pd.DataFrame:
+        """
+        Categorizes Pokemon experience.
+
+        Args:
+            pokemon_dataframe (pd.DataFrame): The Pokemon data.
+
+        Returns:
+            pd.DataFrame: The Pokemon data with experience categorized.
+        """
         self.logger.info("Categorizing Pokemon experience")
         pokemon_dataframe["Category"] = pokemon_dataframe["Base Experience"].apply(
             lambda x: "Weak" if x < 50 else "Medium" if x < 100 else "Strong"
@@ -16,7 +25,16 @@ class DataTransformer:
         self.logger.info(f"Pokemon experience: \n {pokemon_dataframe}")
         return pokemon_dataframe
 
-    def count_pokemon_by_type(self, pokemon_dataframe: pd.DataFrame) -> pd.DataFrame:
+    def count_pokemon_by_type(self, pokemon_dataframe: pd.DataFrame) -> pd.DataFrame:   
+        """
+        Counts the number of Pokemon by type.
+
+        Args:
+            pokemon_dataframe (pd.DataFrame): The Pokemon data.
+
+        Returns:
+            pd.DataFrame: The Pokemon count by type.
+        """
         self.logger.info("Counting Pokemon by type")
         exploded_df = pokemon_dataframe.explode("Types")
         pokemon_count_by_type = exploded_df["Types"].value_counts().reset_index()
@@ -28,6 +46,15 @@ class DataTransformer:
     def calculate_type_statistics(
         self, pokemon_dataframe: pd.DataFrame
     ) -> pd.DataFrame:
+        """
+        Analyzes Pokémon data by type to get counts and average stats.
+
+        Args:
+            pokemon_dataframe (pd.DataFrame): The Pokemon data.
+
+        Returns:
+            pd.DataFrame: The type statistics.
+        """
         self.logger.info("Calculating type statistics")
         exploded_df = pokemon_dataframe.explode("Types")
         type_statistics = (
@@ -47,6 +74,15 @@ class DataTransformer:
         return type_statistics
 
     def find_top_pokemon(self, pokemon_dataframe: pd.DataFrame) -> pd.DataFrame:
+        """
+        Finds the top 5 Pokemon by base experience.
+
+        Args:
+            pokemon_dataframe (pd.DataFrame): The Pokemon data.
+
+        Returns:
+            pd.DataFrame: The top Pokemon.
+        """
         self.logger.info("Finding top Pokemon")
         top_pokemon = pokemon_dataframe.sort_values(
             "Base Experience", ascending=False
@@ -57,6 +93,15 @@ class DataTransformer:
 
 
     def transform_pokemon_data(self, pokemon_dataframe: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+        """
+        Transforms the Pokemon data.
+
+        Args:
+            pokemon_dataframe (pd.DataFrame): The Pokemon data.
+
+        Returns:
+            tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]: The transformed Pokemon data.
+        """
         self.logger.info("Transforming Pokemon data")
         pokemon_dataframe = self.categorize_experience(pokemon_dataframe)
         pokemons_by_type_dataframe = self.count_pokemon_by_type(pokemon_dataframe)

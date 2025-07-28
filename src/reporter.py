@@ -15,11 +15,20 @@ class DataReporter:
         self.__clean_reports_directory()
 
     def __clean_reports_directory(self):
+        """
+        Cleans the reports directory.
+        """
         list_reports = os.listdir(self.configs.OUTPUT_DIR)
         for report in list_reports:
             os.remove(os.path.join(self.configs.OUTPUT_DIR, report))
 
     def generate_type_distribution_chart(self, pokemon_by_type_dataframe: pd.DataFrame):
+        """
+        Generates a bar chart of Pokemon distribution by type.
+
+        Args:
+            pokemon_by_type_dataframe (pd.DataFrame): The Pokemon data.
+        """
         self.logger.info("Building graph bar pokemon by type")
         os.makedirs(self.configs.OUTPUT_DIR, exist_ok=True)
         chart_path = os.path.join(self.configs.OUTPUT_DIR, "graph_pokemon_by_type.png")
@@ -47,6 +56,12 @@ class DataReporter:
             self.logger.error(f"Failed to generate graph: {str(e)}")
 
     def export_top_5_pokemon_csv(self, pokemon_top_5_dataframe: pd.DataFrame):
+        """
+        Exports the top 5 Pokemon to a CSV file.
+
+        Args:
+            pokemon_top_5_dataframe (pd.DataFrame): The Pokemon data.
+        """
         self.logger.info("Exporting top 5 pokemon to csv")
         os.makedirs(self.configs.OUTPUT_DIR, exist_ok=True)
         csv_path = os.path.join(self.configs.OUTPUT_DIR, "top_5_pokemon.csv")
@@ -59,6 +74,12 @@ class DataReporter:
     def export_type_statistics_csv(
         self, pokemon_type_statistics_dataframe: pd.DataFrame
     ):
+        """
+        Exports the type statistics to a CSV file.
+
+        Args:
+            pokemon_type_statistics_dataframe (pd.DataFrame): The Pokemon data.
+        """
         self.logger.info("Exporting type statistics to csv")
         os.makedirs(self.configs.OUTPUT_DIR, exist_ok=True)
         csv_path = os.path.join(self.configs.OUTPUT_DIR, "type_statistics.csv")
@@ -68,7 +89,13 @@ class DataReporter:
         except Exception as e:
             self.logger.error(f"Failed to export type statistics: {str(e)}")
 
-    def _validate_reports_directory(self):
+    def _validate_reports_directory(self) -> bool:
+        """
+        Validates the reports directory.
+
+        Returns:
+            bool: True if the reports directory is valid, False otherwise.
+        """
         list_expected_reports = [
             "graph_pokemon_by_type.png",
             "top_5_pokemon.csv",
@@ -85,7 +112,15 @@ class DataReporter:
         pokemon_by_type_dataframe: pd.DataFrame,
         pokemon_top_5_dataframe: pd.DataFrame,
         pokemon_type_statistics_dataframe: pd.DataFrame,
-    ):
+    ) -> bool:
+        """
+        Generates all reports.
+
+        Args:
+            pokemon_by_type_dataframe (pd.DataFrame): The Pokemon data by type.
+            pokemon_top_5_dataframe (pd.DataFrame): The Pokemon data top 5.
+            pokemon_type_statistics_dataframe (pd.DataFrame): The Pokemon data type statistics.
+        """
         self.logger.info("Generating all reports")
         self.generate_type_distribution_chart(pokemon_by_type_dataframe)
         self.export_top_5_pokemon_csv(pokemon_top_5_dataframe)
@@ -94,3 +129,4 @@ class DataReporter:
             self.logger.error("Reports directory validation failed")
             return False
         self.logger.info("All reports generated successfully")
+        return True

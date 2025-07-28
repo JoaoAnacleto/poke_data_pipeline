@@ -12,15 +12,43 @@ class PokemonExtractor:
         self.logger = logger
 
     def fetch_pokemon_data(self, limit: int = 100, offset: int = 0) -> list[dict]:
+        """
+        Fetches a list of Pokémon and their detailed data from the PokeAPI.
+
+        Args:
+            limit (int): The number of Pokémon to fetch.
+            offset (int): The offset to start fetching from.
+
+        Returns:
+            list[dict]: A list of Pokémon and their detailed data.
+        """
         url = f"{self.configs.BASE_URL}/pokemon?limit={limit}&offset={offset}"
         response = requests.get(url)
         response.raise_for_status()
         return response.json().get("results", [])
 
     def _extract_pokemon_id(self, pokemon_url: str) -> int:
+        """
+        Extracts the Pokémon ID from the URL.
+
+        Args:
+            pokemon_url (str): The URL of the Pokémon.
+
+        Returns:
+            int: The ID of the Pokémon.
+        """
         return int(pokemon_url.split("/")[-2])
 
     def _fetch_pokemon_details(self, pokemon_id: int) -> dict:
+        """
+        Fetches the details of a Pokémon from the PokeAPI.
+
+        Args:
+            pokemon_id (int): The ID of the Pokémon.
+
+        Returns:
+            dict: The details of the Pokémon.
+        """
         detail_url = f"{self.configs.BASE_URL}/pokemon/{pokemon_id}"
         self.logger.info(f"Fetching details for Pokemon {pokemon_id}")
         response = requests.get(detail_url)
@@ -29,6 +57,15 @@ class PokemonExtractor:
         return pokemon_data
 
     def _build_pokemon_dict(self, pokemon_data: dict) -> dict:
+        """
+        Builds a dictionary of Pokémon data.
+
+        Args:
+            pokemon_data (dict): The data of the Pokémon.
+
+        Returns:
+            dict: The dictionary of Pokémon data.
+        """
         pokemon_dict = {
             "ID": pokemon_data["id"],
             "Name": pokemon_data["name"].title(),  # apply title case
@@ -51,6 +88,15 @@ class PokemonExtractor:
         return pokemon_dict
 
     def build_pokemons_dataframe(self, pokemons_data: list[dict]) -> pd.DataFrame:
+        """
+        Builds a DataFrame of Pokémon data.
+
+        Args:
+            pokemons_data (list[dict]): The data of the Pokémon.
+
+        Returns:
+            pd.DataFrame: The DataFrame of Pokémon data.
+        """
         pokemon_list = []
         for pokemon in pokemons_data:
             try:
