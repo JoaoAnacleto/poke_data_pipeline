@@ -34,6 +34,12 @@ poke_data_pipeline/
 └── task_list.md
 ```
 
+
+## Documentação do Código
+
+Para uma documentação detalhada do código-fonte, classes, funções e configurações, consulte o arquivo [DOCS.md](DOCS.md).
+
+
 ## Instalação
 
 ### Pré-requisitos
@@ -133,54 +139,6 @@ BASE_URL=https://pokeapi.co/api/v2
 OUTPUT_DIR=./meus_relatorios
 ```
 
-## Gerenciamento de Containers com Portainer
-
-Para facilitar o gerenciamento e a visualização dos seus containers Docker, recomendamos o uso do Portainer.
-
-### O que é Portainer?
-
-Portainer é uma ferramenta de gerenciamento de código aberto que simplifica a implantação, o gerenciamento e a operação de ambientes Docker (e Kubernetes). Ele fornece uma interface de usuário intuitiva que permite gerenciar containers, imagens, volumes, redes e muito mais.
-
-### Instalação do Portainer
-
-Para instalar o Portainer em um ambiente Docker, execute os seguintes comandos:
-
-1. Crie um volume Docker para persistir os dados do Portainer:
-
-   ```bash
-   docker volume create portainer_data
-   ```
-
-2. Execute o container do Portainer:
-
-   ```bash
-   docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-   ```
-
-   - `-p 8000:8000`: Porta para a comunicação HTTP (opcional).
-   - `-p 9443:9443`: Porta para a interface web HTTPS (recomendado).
-   - `--name portainer`: Nomeia o container como `portainer`.
-   - `--restart always`: Garante que o Portainer reinicie automaticamente com o Docker.
-   - `-v /var/run/docker.sock:/var/run/docker.sock`: Permite que o Portainer se comunique com o daemon Docker.
-   - `-v portainer_data:/data`: Mapeia o volume `portainer_data` para o diretório de dados do Portainer.
-
-### Acessando o Portainer
-
-Após a instalação, você pode acessar a interface web do Portainer em `https://localhost:9443` (ou `https://seu_ip_do_servidor:9443`). Na primeira vez, você será solicitado a criar um usuário e senha de administrador.
-
-### Gerenciando o `poke-data-pipeline` no Portainer
-
-1. **Adicionar Imagem:** No Portainer, navegue até "Images" e você verá a imagem `poke-data-pipeline` que você construiu.
-
-2. **Criar Container:** Vá para "Containers" e clique em "Add container".
-   - **Name:** `poke-data-pipeline-instance` (ou outro nome de sua preferência)
-   - **Image:** `poke-data-pipeline`
-   - **Volumes:** Adicione um mapeamento de volume para o diretório `output`:
-     - `host path`: `/caminho/completo/para/seu/projeto/poke_data_pipeline/output` (substitua pelo caminho real no seu sistema)
-     - `container path`: `/app/output`
-   - Clique em "Deploy the container".
-
-3. **Visualizar Logs e Status:** No Portainer, você pode facilmente visualizar os logs do container, iniciar, parar, reiniciar e remover o container, além de inspecionar seus detalhes.
 
 ## Licença
 

@@ -1,0 +1,6 @@
+ID,Name,Base Experience,Types,HP,Attack,Defense,Category
+6,Charizard,240,"['fire', 'flying']",78,84,78,Strong
+9,Blastoise,239,['water'],79,83,100,Strong
+3,Venusaur,236,"['grass', 'poison']",80,82,83,Strong
+62,Poliwrath,230,"['water', 'fighting']",90,95,95,Strong
+34,Nidoking,227,"['poison', 'ground']",81,102,77,Strong
